@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/ikovalen/filler/filler.c
+filler.h
+/Users/ikovalen/filler/filler.h
+
+/Users/ikovalen/filler/filler.h
+libft/libft.h
+/Users/ikovalen/filler/libft/libft.h
+
+/Users/ikovalen/filler/libft/libft.h
+unistd.h
+-
+stdlib.h
+-
+string.h
+-
+stdarg.h
+-
+fcntl.h
+-
+
