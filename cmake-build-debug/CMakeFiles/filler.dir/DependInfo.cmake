@@ -5,6 +5,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/ikovalen/filler/filler.c" "/Users/ikovalen/filler/cmake-build-debug/CMakeFiles/filler.dir/filler.c.o"
+  "/Users/ikovalen/filler/solve.c" "/Users/ikovalen/filler/cmake-build-debug/CMakeFiles/filler.dir/solve.c.o"
+  "/Users/ikovalen/filler/tools.c" "/Users/ikovalen/filler/cmake-build-debug/CMakeFiles/filler.dir/tools.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

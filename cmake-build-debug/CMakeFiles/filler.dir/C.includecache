@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/ikovalen/filler/filler.c
-filler.h
-/Users/ikovalen/filler/filler.h
-
 /Users/ikovalen/filler/filler.h
 libft/libft.h
 /Users/ikovalen/filler/libft/libft.h
@@ -25,4 +21,8 @@ stdarg.h
 -
 fcntl.h
 -
+
+/Users/ikovalen/filler/solve.c
+filler.h
+/Users/ikovalen/filler/filler.h
 

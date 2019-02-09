@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /private/var/folders/zz/zyxvpxvq6csfxvn_n0000rr0000660/T/AppTranslocation/FB0E4210-49BE-483E-8B2A-098984843323/d/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /private/var/folders/zz/zyxvpxvq6csfxvn_n0000rr0000660/T/AppTranslocation/FB0E4210-49BE-483E-8B2A-098984843323/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/ikovalen/filler/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/private/var/folders/zz/zyxvpxvq6csfxvn_n0000rr0000660/T/AppTranslocation/FB0E4210-49BE-483E-8B2A-098984843323/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/private/var/folders/zz/zyxvpxvq6csfxvn_n0000rr0000660/T/AppTranslocation/FB0E4210-49BE-483E-8B2A-098984843323/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -150,6 +150,60 @@ filler.c.s:
 	$(MAKE) -f CMakeFiles/filler.dir/build.make CMakeFiles/filler.dir/filler.c.s
 .PHONY : filler.c.s
 
+solve.o: solve.c.o
+
+.PHONY : solve.o
+
+# target to build an object file
+solve.c.o:
+	$(MAKE) -f CMakeFiles/filler.dir/build.make CMakeFiles/filler.dir/solve.c.o
+.PHONY : solve.c.o
+
+solve.i: solve.c.i
+
+.PHONY : solve.i
+
+# target to preprocess a source file
+solve.c.i:
+	$(MAKE) -f CMakeFiles/filler.dir/build.make CMakeFiles/filler.dir/solve.c.i
+.PHONY : solve.c.i
+
+solve.s: solve.c.s
+
+.PHONY : solve.s
+
+# target to generate assembly for a file
+solve.c.s:
+	$(MAKE) -f CMakeFiles/filler.dir/build.make CMakeFiles/filler.dir/solve.c.s
+.PHONY : solve.c.s
+
+tools.o: tools.c.o
+
+.PHONY : tools.o
+
+# target to build an object file
+tools.c.o:
+	$(MAKE) -f CMakeFiles/filler.dir/build.make CMakeFiles/filler.dir/tools.c.o
+.PHONY : tools.c.o
+
+tools.i: tools.c.i
+
+.PHONY : tools.i
+
+# target to preprocess a source file
+tools.c.i:
+	$(MAKE) -f CMakeFiles/filler.dir/build.make CMakeFiles/filler.dir/tools.c.i
+.PHONY : tools.c.i
+
+tools.s: tools.c.s
+
+.PHONY : tools.s
+
+# target to generate assembly for a file
+tools.c.s:
+	$(MAKE) -f CMakeFiles/filler.dir/build.make CMakeFiles/filler.dir/tools.c.s
+.PHONY : tools.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +216,12 @@ help:
 	@echo "... filler.o"
 	@echo "... filler.i"
 	@echo "... filler.s"
+	@echo "... solve.o"
+	@echo "... solve.i"
+	@echo "... solve.s"
+	@echo "... tools.o"
+	@echo "... tools.i"
+	@echo "... tools.s"
 .PHONY : help
 
 

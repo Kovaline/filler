@@ -12,16 +12,56 @@
 
 #include "filler.h"
 
-/*void	start(t_info *data);
+void	readpiece(char *line, t_info *data)
 {
-	char *line;
+	int i;
 
-	while (get_next_line(0, &line) > 0)
+	i = 6;
+	if (data->piece != NULL)
+		ft_strdel(data->piece);
+	data->piecerow = ft_atoi(&line[i]);
+	while (line[i] >= '0' && line[i] <= '9')
+		i++;
+	data->piececol = ft_atoi(&line[i + 1]);
+	i = 0;
+	data->piece = (char **)malloc(data->piecerow * sizeof(char *) + 1);
+	while (i < data->piecerow)
 	{
-		if (ft_strncmp(line, "Piece", 4) == 0)
-
+		get_next_line(0, &line);
+		if (line[0] == '*' || line[0] == '.')
+		{
+			data->piece[i] = ft_strdup(line);
+			i++;
+		}
 	}
-}*/
+	data->piece[i] = NULL;
+}
+
+void	readmaps(t_info *data)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	if (data->map != NULL)
+	{
+		get_next_line(0, &line);
+	//	ft_strdel(data->map);
+	}
+	else
+		data->map = (char **)malloc(data->height * sizeof(char *) + 1);
+	get_next_line(0, &line);
+	while (i < data->height)
+	{
+		get_next_line(0, &line);
+		data->map[i] = ft_strdup(line + 4);
+		i++;
+	}
+	get_next_line(0, &line);
+	if (ft_strncmp(line, "Piece", 4) == 0)
+		readpiece(line, data);
+	data->map[i] = NULL;
+}
 
 void	takedata(t_info *data)
 {
@@ -30,7 +70,9 @@ void	takedata(t_info *data)
 
 	get_next_line(0, &line);
 	data->player = ft_atoi(&line[10]);
-	get_next_line(0, &line);
+	while (get_next_line(0, &line) > 0)
+		if (ft_strncmp(line, "Plateau", 6) == 0)
+			break;
 	i = 8;
 	data->height = ft_atoi(&line[i]);
 	while (line[i] >= '0' && line[i] <= '9')
@@ -50,24 +92,26 @@ void	takedata(t_info *data)
 
 void	reset(t_info *data)
 {
-	data->player = 0;
-	data->height = 0;
-	data->width = 0;
-	data->xo = 0;
-	data->xoenemy = 0;
+	data->piececol = 0;
+	data->piecerow = 0;
+	data->checker = 0;
 }
 
 int		main(void)
 {
 	t_info	data;
+	int i = 0;
 
-	reset(&data);
+	data.map = NULL;
 	takedata(&data);
-	//start(&data);
-	ft_putnbr(3);
-	ft_putchar(' ');
-	ft_putnbr(6);
-	ft_putchar('\n');
-	//ft_printf("%i %i %i %c %c", data.player, data.height, data.width, data.xoenemy, data.xo);
+	reset(&data);
+	while (1)
+	{
+		//data.coord1 = 0;
+		//data.coord2 = 0;
+		readmaps(&data);
+		solve(&data);
+		ft_printf("%i %i\n", data.coord1, data.coord2);
+	}
 	return (0);
 }

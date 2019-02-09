@@ -5,3 +5,7 @@ CMakeFiles/filler.dir/filler.c.o: ../filler.c
 CMakeFiles/filler.dir/filler.c.o: ../filler.h
 CMakeFiles/filler.dir/filler.c.o: ../libft/libft.h
 
+CMakeFiles/filler.dir/solve.c.o: ../filler.h
+CMakeFiles/filler.dir/solve.c.o: ../libft/libft.h
+CMakeFiles/filler.dir/solve.c.o: ../solve.c
+

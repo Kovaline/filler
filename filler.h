@@ -17,10 +17,28 @@
 typedef struct			s_info
 {
 	unsigned int		player;
+	unsigned int		stars;
 	unsigned int		width;
 	unsigned int		height;
+	unsigned int		coord1;
+	unsigned int		coord2;
+	unsigned int		checker;
 	char 				xo;
 	char 				xoenemy;
+	char 				**map;
+	unsigned int		piececol;
+	unsigned int		piecerow;
+	char				**piece;
+	unsigned int		posenx;
+	unsigned int		poseny;
+	unsigned int		posmex;
+	unsigned int		posmey;
+	unsigned int		topbot;
 }						t_info;
+
+int 	module(int x);
+void	solve(t_info *data);
+void	checkpos(t_info *data);
+int		ismin(int i, int j, t_info *data);
 
 #endif
