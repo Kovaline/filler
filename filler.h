@@ -12,33 +12,29 @@
 
 #ifndef FILLER_H
 # define FILLER_H
-# include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
+# define INI int x; int y; int row; int col; int star
+# define DEFI x = -1; star = 0
 
 typedef struct			s_info
 {
-	unsigned int		player;
-	unsigned int		stars;
-	unsigned int		width;
-	unsigned int		height;
-	unsigned int		coord1;
-	unsigned int		coord2;
-	unsigned int		checker;
-	char 				xo;
-	char 				xoenemy;
-	char 				**map;
-	unsigned int		piececol;
-	unsigned int		piecerow;
+	int					player;
+	int					stars;
+	int					width;
+	int					height;
+	int					coord1;
+	int					coord2;
+	int					checker;
+	char				xo;
+	char				xoenemy;
+	char				**map;
+	int					piececol;
+	int					piecerow;
 	char				**piece;
-	unsigned int		posenx;
-	unsigned int		poseny;
-	unsigned int		posmex;
-	unsigned int		posmey;
-	unsigned int		topbot;
 }						t_info;
 
-int 	module(int x);
-void	solve(t_info *data);
-void	checkpos(t_info *data);
-int		ismin(int i, int j, t_info *data);
+int						module(int x);
+void					solve(t_info *data);
+int						ismin(int i, int j, t_info *data);
 
 #endif

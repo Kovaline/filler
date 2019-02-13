@@ -12,92 +12,34 @@
 
 #include "filler.h"
 
-int 	module(int x)
+int		module(int x)
 {
-	return(x < 0 ? -x : x);
-}
-
-void	checkpos(t_info *data)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < data->height)
-	{
-		j = 0;
-		while (j < data->width)
-		{
-			if (data->map[i][j] == data->xo)
-			{
-				data->posmex = i;
-				data->posmey = j;
-			}
-			if (data->map[i][j] == data->xoenemy)
-			{
-				data->posenx = i;
-				data->poseny = j;
-			}
-			j++;
-		}
-		i++;
-	}
-	data->topbot = (data->posmex > data->posenx) ? 1 : 0;
-}
-
-void	closestenemy(t_info *data)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < data->height)
-	{
-		j = 0;
-		while (j < data->width)
-		{
-			if (data->map[i][j] == data->xoenemy)
-			{
-				data->posenx = i;
-				data->poseny = j;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	closestenemy2(t_info *data)
-{
-	int i;
-	int j;
-
-	i = data->height - 1;
-	while (i > 0)
-	{
-		j = data->width - 1;
-		while (j > 0)
-		{
-			if (data->map[i][j] == data->xoenemy)
-			{
-				data->posenx = i;
-				data->poseny = j;
-			}
-			j--;
-		}
-		i--;
-	}
+	return (x < 0 ? -x : x);
 }
 
 int		ismin(int i, int j, t_info *data)
 {
+	int min;
 	int x;
+	int y;
+	int check;
 
-	checkpos(data);
-	if (data->topbot == 1)
-		//closestenemy(data);
-	if (data->topbot == 0)
-		closestenemy2(data);
-	x = module(i - data->posenx) - module(j - data->poseny);
-	return (x);
+	x = 0;
+	min = 5000;
+	while (x < data->height)
+	{
+		y = 0;
+		while (y < data->width)
+		{
+			if (data->map[x][y] == data->xoenemy)
+			{
+				check = module(x - i) + module(y - j);
+				if (check < min)
+					min = check;
+			}
+			y++;
+		}
+		x++;
+	}
+	return (min);
 }

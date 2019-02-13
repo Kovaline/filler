@@ -44,10 +44,7 @@ void	readmaps(t_info *data)
 
 	i = 0;
 	if (data->map != NULL)
-	{
 		get_next_line(0, &line);
-	//	ft_strdel(data->map);
-	}
 	else
 		data->map = (char **)malloc(data->height * sizeof(char *) + 1);
 	get_next_line(0, &line);
@@ -65,14 +62,14 @@ void	readmaps(t_info *data)
 
 void	takedata(t_info *data)
 {
-	int i;
-	char *line;
+	int		i;
+	char	*line;
 
 	get_next_line(0, &line);
 	data->player = ft_atoi(&line[10]);
 	while (get_next_line(0, &line) > 0)
 		if (ft_strncmp(line, "Plateau", 6) == 0)
-			break;
+			break ;
 	i = 8;
 	data->height = ft_atoi(&line[i]);
 	while (line[i] >= '0' && line[i] <= '9')
@@ -100,18 +97,17 @@ void	reset(t_info *data)
 int		main(void)
 {
 	t_info	data;
-	int i = 0;
 
 	data.map = NULL;
 	takedata(&data);
 	reset(&data);
 	while (1)
 	{
-		//data.coord1 = 0;
-		//data.coord2 = 0;
 		readmaps(&data);
 		solve(&data);
 		ft_printf("%i %i\n", data.coord1, data.coord2);
+		data.coord1 = 0;
+		data.coord2 = 0;
 	}
 	return (0);
 }

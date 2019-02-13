@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-void 	checkstars(t_info *data)
+void	checkstars(t_info *data)
 {
 	int i;
 	int j;
@@ -32,44 +32,31 @@ void 	checkstars(t_info *data)
 	}
 }
 
-int 	tryit(int i, int j, t_info *data)
+int		tryit(int i, int j, t_info *data)
 {
-	int x;
-	int y;
-	int row;
-	int col;
-	int star;
-
-	x = 0;
-	star = 0;
-	while (x < data->piecerow)
+	INI;
+	DEFI;
+	while (++x < data->piecerow)
 	{
-		y = 0;
-		while (y < data->piececol)
+		y = -1;
+		while (++y < data->piececol)
 		{
 			row = i + x;
 			col = j + y;
-			if (data->piece[x][y] == '*' && row < data->height && col < data->width &&
-			data->map[row][col] != data->xoenemy && (data->map[row][col] == '.'
-			|| data->map[row][col] == data->xo))
-			{
-				star++;
-				if (data->map[row][col] == data->xo)
+			if (data->piece[x][y] == '*' && row < data->height &&
+			col < data->width && data->map[row][col] != data->xoenemy
+			&& (data->map[row][col] == '.' || data->map[row][col] == data->xo))
+				if ((++star) && data->map[row][col] == data->xo)
 					data->checker++;
-			}
-			y++;
 		}
-		x++;
 	}
 	if (star == data->stars && data->checker == 1)
 	{
 		data->checker = 0;
 		return (1);
 	}
-	else {
-		data->checker = 0;
-		return (0);
-	}
+	data->checker = 0;
+	return (0);
 }
 
 void	solve(t_info *data)
@@ -79,7 +66,7 @@ void	solve(t_info *data)
 	int min;
 
 	i = 0;
-	min = -42;
+	min = 6000;
 	checkstars(data);
 	while (i < data->height)
 	{
@@ -88,9 +75,9 @@ void	solve(t_info *data)
 		{
 			if (tryit(i, j, data) == 1)
 			{
-				if (min == -42 || min > ismin(i, j, data))
+				if (min > ismin(i, j, data))
 				{
-					min = module(i - data->posenx) - module(j - data->poseny);
+					min = ismin(i, j, data);
 					data->coord1 = i;
 					data->coord2 = j;
 				}
