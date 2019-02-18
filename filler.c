@@ -33,6 +33,7 @@ void	readpiece(char *line, t_info *data)
 			data->piece[i] = ft_strdup(line);
 			i++;
 		}
+		free (line);
 	}
 	data->piece[i] = NULL;
 }
@@ -48,16 +49,19 @@ void	readmaps(t_info *data)
 	else
 		data->map = (char **)malloc(data->height * sizeof(char *) + 1);
 	get_next_line(0, &line);
+	free (line);
 	while (i < data->height)
 	{
 		get_next_line(0, &line);
 		data->map[i] = ft_strdup(line + 4);
+		free(line);
 		i++;
 	}
 	get_next_line(0, &line);
 	if (ft_strncmp(line, "Piece", 4) == 0)
 		readpiece(line, data);
 	data->map[i] = NULL;
+	free(line);
 }
 
 void	takedata(t_info *data)
@@ -67,6 +71,7 @@ void	takedata(t_info *data)
 
 	get_next_line(0, &line);
 	data->player = ft_atoi(&line[10]);
+	free(line);
 	while (get_next_line(0, &line) > 0)
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 			break ;
@@ -85,6 +90,7 @@ void	takedata(t_info *data)
 		data->xo = 'X';
 		data->xoenemy = 'O';
 	}
+	free(line);
 }
 
 void	reset(t_info *data)
