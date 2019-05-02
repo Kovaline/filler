@@ -15,6 +15,7 @@
 # include "ft_printf/ft_printf.h"
 # define INI int x; int y; int row; int col; int star
 # define DEFI x = -1; star = 0
+# define Z while(data->piece[i] != NULL)free(data->piece[i++]);free(data->piece)
 
 typedef struct			s_info
 {
@@ -33,6 +34,7 @@ typedef struct			s_info
 	char				**piece;
 }						t_info;
 
+void					fillplayer(t_info *data);
 int						module(int x);
 void					solve(t_info *data);
 int						ismin(int i, int j, t_info *data);

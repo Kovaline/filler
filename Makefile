@@ -6,7 +6,7 @@
 #    By: ikovalen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/13 12:19:44 by ikovalen          #+#    #+#              #
-#    Updated: 2019/02/13 12:19:45 by ikovalen         ###   ########.fr        #
+#    Updated: 2019/03/08 12:03:37 by ikovalen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ all: $(NAME)
 
 $(NAME):
 	@make -C ft_printf
+	@make -C vizual
 	gcc $(FLAGS) $(SRC)
 	gcc $(OBJ) -L ft_printf/ -lftprintf -o $(NAME)
 

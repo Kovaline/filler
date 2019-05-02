@@ -1,4 +1,4 @@
-NAME = filler
+NAME = vizual
 FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)

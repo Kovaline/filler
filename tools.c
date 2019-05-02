@@ -12,6 +12,20 @@
 
 #include "filler.h"
 
+void	fillplayer(t_info *data)
+{
+	if (data->player == 1)
+	{
+		data->xo = 'O';
+		data->xoenemy = 'X';
+	}
+	else
+	{
+		data->xo = 'X';
+		data->xoenemy = 'O';
+	}
+}
+
 int		module(int x)
 {
 	return (x < 0 ? -x : x);

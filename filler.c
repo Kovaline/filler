@@ -6,7 +6,7 @@
 /*   By: ikovalen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:25:16 by ikovalen          #+#    #+#             */
-/*   Updated: 2019/01/31 13:25:26 by ikovalen         ###   ########.fr       */
+/*   Updated: 2019/03/11 13:46:45 by ikovalen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@ void	readpiece(char *line, t_info *data)
 	int i;
 
 	i = 6;
-	if (data->piece != NULL)
-		ft_strdel(data->piece);
 	data->piecerow = ft_atoi(&line[i]);
 	while (line[i] >= '0' && line[i] <= '9')
 		i++;
 	data->piececol = ft_atoi(&line[i + 1]);
 	i = 0;
+	if (data->piece != NULL)
+	{
+		Z;
+	}
 	data->piece = (char **)malloc(data->piecerow * sizeof(char *) + 1);
+	i = 0;
 	while (i < data->piecerow)
 	{
 		get_next_line(0, &line);
@@ -33,7 +36,7 @@ void	readpiece(char *line, t_info *data)
 			data->piece[i] = ft_strdup(line);
 			i++;
 		}
-		free (line);
+		free(line);
 	}
 	data->piece[i] = NULL;
 }
@@ -45,11 +48,14 @@ void	readmaps(t_info *data)
 
 	i = 0;
 	if (data->map != NULL)
+	{
 		get_next_line(0, &line);
+		free(line);
+	}
 	else
 		data->map = (char **)malloc(data->height * sizeof(char *) + 1);
 	get_next_line(0, &line);
-	free (line);
+	free(line);
 	while (i < data->height)
 	{
 		get_next_line(0, &line);
@@ -73,23 +79,17 @@ void	takedata(t_info *data)
 	data->player = ft_atoi(&line[10]);
 	free(line);
 	while (get_next_line(0, &line) > 0)
+	{
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 			break ;
+		free(line);
+	}
 	i = 8;
 	data->height = ft_atoi(&line[i]);
 	while (line[i] >= '0' && line[i] <= '9')
 		i++;
 	data->width = ft_atoi(&line[i + 1]);
-	if (data->player == 1)
-	{
-		data->xo = 'O';
-		data->xoenemy = 'X';
-	}
-	else
-	{
-		data->xo = 'X';
-		data->xoenemy = 'O';
-	}
+	fillplayer(data);
 	free(line);
 }
 
@@ -103,8 +103,10 @@ void	reset(t_info *data)
 int		main(void)
 {
 	t_info	data;
+	int		i;
 
 	data.map = NULL;
+	data.piece = NULL;
 	takedata(&data);
 	reset(&data);
 	while (1)
@@ -112,6 +114,11 @@ int		main(void)
 		readmaps(&data);
 		solve(&data);
 		ft_printf("%i %i\n", data.coord1, data.coord2);
+		i = 0;
+		while (data.map[i])
+			ft_strdel(&data.map[i++]);
+		ft_strdel(data.map);
+		i = 0;
 		data.coord1 = 0;
 		data.coord2 = 0;
 	}
